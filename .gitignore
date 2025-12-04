@@ -1,0 +1,24 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
+
+# Build artifacts
+*.pdf
+node_modules/
+
+# Keep the QR code in repo
+!qr-code.svg
+!qr-code.png
+

@@ -1,0 +1,203 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+/* Print layout: 4 panels on letter-size landscape */
+@media print {
+    body {
+        padding: 0;
+        background: white;
+    }
+    
+    .print-instructions {
+        display: none !important;
+    }
+}
+
+/* Card container - letter size landscape */
+body {
+    width: 11in;
+    height: 8.5in;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 5.5in 5.5in;
+    grid-template-rows: 4.25in 4.25in;
+    gap: 0;
+}
+
+/* Individual panels */
+.panel {
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5in;
+    background: white;
+    page-break-inside: avoid;
+}
+
+@media print {
+    .panel {
+        border: none;
+    }
+}
+
+/* Panel 4: Front (top-left) */
+.front {
+    background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+    color: white;
+}
+
+.front-content {
+    text-align: center;
+}
+
+.front h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.front .year {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    opacity: 0.9;
+}
+
+/* Panel 1: Back (top-right) */
+.back {
+    background: #f8f8f8;
+}
+
+.qr-container {
+    text-align: center;
+}
+
+.qr-code {
+    width: 2.5in;
+    height: 2.5in;
+    border: 8px solid white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.qr-caption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Panel 2 & 3: Inside pages (bottom row) */
+.inside-left,
+.inside-right {
+    background: white;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0.4in 0.3in;
+}
+
+.inside-left h2,
+.inside-right h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #2c5f2d;
+    margin-bottom: 0.3in;
+    padding-bottom: 0.1in;
+    border-bottom: 2px solid #97bc62;
+}
+
+/* Parameters layout */
+.parameters {
+    width: 100%;
+    font-size: 0.65rem;
+    line-height: 1.4;
+}
+
+.param-section {
+    margin-bottom: 0.15in;
+}
+
+.param-label {
+    font-weight: 700;
+    color: #2c5f2d;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.05in;
+}
+
+.param-values {
+    color: #333;
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    line-height: 1.6;
+    word-wrap: break-word;
+}
+
+/* Print instructions (screen only) */
+.print-instructions {
+    grid-column: 1 / -1;
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-family: 'Arial', sans-serif;
+}
+
+@media print {
+    .print-instructions {
+        display: none;
+    }
+}
+
+.print-instructions h3 {
+    color: #856404;
+    margin-bottom: 0.5rem;
+}
+
+.print-instructions ol {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.print-instructions li {
+    margin-bottom: 0.25rem;
+    color: #856404;
+}
+
+.print-instructions p {
+    color: #856404;
+    font-weight: bold;
+}
+
+/* Responsive adjustments for screen viewing */
+@media screen and (max-width: 11in) {
+    body {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    .panel {
+        width: 100%;
+        min-height: 400px;
+        margin-bottom: 1rem;
+    }
+}
