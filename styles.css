@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: 'Raleway', 'Arial', sans-serif;
     background: #f5f5f5;
     padding: 20px;
 }
@@ -19,6 +19,10 @@ body {
     }
     
     .print-instructions {
+        display: none !important;
+    }
+    
+    .snowflakes {
         display: none !important;
     }
 }
@@ -44,6 +48,8 @@ body {
     padding: 0.5in;
     background: white;
     page-break-inside: avoid;
+    position: relative;
+    overflow: hidden;
 }
 
 @media print {
@@ -52,113 +58,247 @@ body {
     }
 }
 
-/* Panel 4: Front (top-left) */
+/* ========================================
+   FRONT PANEL - Festive Christmas Theme
+   ======================================== */
+
 .front {
-    background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+    background: linear-gradient(135deg, #b91d1d 0%, #8b0000 50%, #660000 100%);
     color: white;
+    position: relative;
 }
+
+/* Snowflakes animation */
+.snowflakes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10%;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5em;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(105vh);
+    }
+}
+
+.snowflake:nth-child(1) { left: 10%; animation-duration: 10s; animation-delay: 0s; }
+.snowflake:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: 2s; }
+.snowflake:nth-child(3) { left: 30%; animation-duration: 8s; animation-delay: 4s; }
+.snowflake:nth-child(4) { left: 40%; animation-duration: 14s; animation-delay: 1s; }
+.snowflake:nth-child(5) { left: 50%; animation-duration: 11s; animation-delay: 3s; }
+.snowflake:nth-child(6) { left: 60%; animation-duration: 9s; animation-delay: 5s; }
+.snowflake:nth-child(7) { left: 70%; animation-duration: 13s; animation-delay: 2s; }
+.snowflake:nth-child(8) { left: 80%; animation-duration: 10s; animation-delay: 4s; }
 
 .front-content {
     text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+.ornament {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
 }
 
 .front h1 {
-    font-size: 3rem;
-    font-weight: 300;
-    letter-spacing: 0.1em;
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
     line-height: 1.2;
-    text-transform: uppercase;
     margin-bottom: 0.5rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
 }
 
 .front .year {
-    font-size: 1.5rem;
-    font-weight: 300;
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 2rem;
+    font-weight: 400;
     letter-spacing: 0.3em;
-    opacity: 0.9;
+    margin-bottom: 0.5rem;
+    opacity: 0.95;
 }
 
-/* Panel 1: Back (top-right) */
+.tree {
+    font-size: 3rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ========================================
+   BACK PANEL - QR Code with Pattern
+   ======================================== */
+
 .back {
-    background: #f8f8f8;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+    position: relative;
+}
+
+.back-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    background-image: 
+        repeating-linear-gradient(45deg, #c41e3a 0, #c41e3a 10px, transparent 10px, transparent 20px),
+        repeating-linear-gradient(-45deg, #0f7e3e 0, #0f7e3e 10px, transparent 10px, transparent 20px);
 }
 
 .qr-container {
     text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+.qr-label {
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #c41e3a;
+    margin-bottom: 0.5rem;
 }
 
 .qr-code {
     width: 2.5in;
     height: 2.5in;
     border: 8px solid white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(196, 30, 58, 0.3);
+    border-radius: 12px;
+    background: white;
 }
 
 .qr-caption {
     margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: #666;
-    font-style: italic;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f7e3e;
 }
 
-/* Panel 2 & 3: Inside pages (bottom row) */
+.holly {
+    position: absolute;
+    bottom: 0.3in;
+    font-size: 1.5rem;
+    z-index: 2;
+}
+
+/* ========================================
+   INSIDE PANELS - Parameter Layouts
+   ======================================== */
+
 .inside-left,
 .inside-right {
-    background: white;
+    background: linear-gradient(to bottom, #ffffff 0%, #fffef8 100%);
     align-items: stretch;
     justify-content: flex-start;
-    padding: 0.4in 0.3in;
+    padding: 0.35in 0.3in;
+    border-left: 3px solid #c41e3a;
+    border-right: 3px solid #0f7e3e;
+}
+
+.inside-header {
+    text-align: center;
+    margin-bottom: 0.25in;
+}
+
+.name-ornament {
+    font-size: 2rem;
+    margin-bottom: 0.1in;
 }
 
 .inside-left h2,
 .inside-right h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: #2c5f2d;
-    margin-bottom: 0.3in;
-    padding-bottom: 0.1in;
-    border-bottom: 2px solid #97bc62;
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #c41e3a;
+    margin-bottom: 0.1in;
 }
 
-/* Parameters layout */
+.name-underline {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #c41e3a, #ffd700, #0f7e3e);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* Parameters layout - BIGGER FONTS */
 .parameters {
     width: 100%;
-    font-size: 0.65rem;
-    line-height: 1.4;
+    font-size: 0.75rem;
+    line-height: 1.5;
 }
 
 .param-section {
-    margin-bottom: 0.15in;
+    margin-bottom: 0.12in;
+    padding: 0.08in;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+    border-left: 3px solid #ffd700;
 }
 
 .param-label {
+    font-family: 'Raleway', sans-serif;
     font-weight: 700;
-    color: #2c5f2d;
-    text-transform: uppercase;
-    font-size: 0.6rem;
-    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    color: #c41e3a;
+    letter-spacing: 0.03em;
     margin-bottom: 0.05in;
+    text-transform: uppercase;
 }
 
 .param-values {
-    color: #333;
-    font-family: 'Courier New', monospace;
-    font-size: 0.6rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 0.72rem;
+    color: #2c2c2c;
     line-height: 1.6;
     word-wrap: break-word;
 }
 
-/* Print instructions (screen only) */
+.inside-footer {
+    text-align: center;
+    margin-top: 0.15in;
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f7e3e;
+}
+
+/* ========================================
+   PRINT INSTRUCTIONS
+   ======================================== */
+
 .print-instructions {
     grid-column: 1 / -1;
-    background: #fff3cd;
-    border: 2px solid #ffc107;
-    border-radius: 8px;
-    padding: 1rem;
+    background: linear-gradient(135deg, #fff8dc 0%, #ffe4b5 100%);
+    border: 3px solid #c41e3a;
+    border-radius: 12px;
+    padding: 1.5rem;
     margin-top: 1rem;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.2);
 }
 
 @media print {
@@ -168,26 +308,48 @@ body {
 }
 
 .print-instructions h3 {
-    color: #856404;
-    margin-bottom: 0.5rem;
+    font-family: 'Mountains of Christmas', cursive;
+    color: #c41e3a;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 .print-instructions ol {
-    margin-left: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
 }
 
 .print-instructions li {
-    margin-bottom: 0.25rem;
-    color: #856404;
+    margin-bottom: 0.5rem;
+    color: #2c2c2c;
+    line-height: 1.6;
 }
 
 .print-instructions p {
-    color: #856404;
-    font-weight: bold;
+    color: #2c2c2c;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
 }
 
-/* Responsive adjustments for screen viewing */
+.print-instructions strong {
+    color: #c41e3a;
+}
+
+.print-instructions .tip {
+    background: rgba(15, 126, 62, 0.1);
+    padding: 0.75rem;
+    border-radius: 8px;
+    border-left: 4px solid #0f7e3e;
+    margin-top: 1rem;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
 @media screen and (max-width: 11in) {
     body {
         width: 100%;
@@ -197,7 +359,16 @@ body {
     
     .panel {
         width: 100%;
-        min-height: 400px;
+        min-height: 500px;
         margin-bottom: 1rem;
+    }
+    
+    .front h1 {
+        font-size: 3rem;
+    }
+    
+    .inside-left h2,
+    .inside-right h2 {
+        font-size: 2rem;
     }
 }
